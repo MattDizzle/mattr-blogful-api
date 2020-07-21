@@ -45,6 +45,14 @@ describe.only('Articles Endpoints', function() {
           .get('/articles')
           .expect(200, testArticles);
       });
+
+      it('GET /articles/:article_id responds with 200 and the specified article', () => {
+        const articleId = 2;
+        const expectedArticle = testArticles[articleId - 1];
+        return supertest(app)
+          .get(`/articles/${articleId}`)
+          .expect(200, expectedArticle);
+      });
     });
   });
 
